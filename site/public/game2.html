@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Gamer Side - Play</title>
+</head>
+<style>
+    .game{
+        width: fit-content;
+        height: fit-content;
+        background-color: aliceblue;
+    }
+    .game .linha{
+        display: flex;
+    }
+    .game .linha>div {
+      float: left;
+      width: 180px;
+      height: 160px;
+      box-sizing:border-box;
+      border: 1px solid black;
+    }
+
+    #piece img{
+        width: 180px;
+        height: 160px;
+        position: absolute;
+        visibility: hidden;
+    }
+    </style>
+<body>
+    <div class="game" id="game">
+        <div class="linha">
+            <div id="a" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p1"></div>
+            <div id="b" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p2"></div>
+            <div id="c" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p3"></div>
+            <div id="d" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p4"></div>
+        </div>
+        <div class="linha">
+            <div id="e" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p5"></div>
+            <div id="f" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p6"></div>
+            <div id="g" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p7"></div>
+            <div id="h" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p8"></div>
+        </div>
+        <div class="linha">
+            <div id="i" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p9"></div>
+            <div id="j" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p10"></div>
+            <div id="k" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p11"></div>
+            <div id="l" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p12"></div>
+        </div>
+    </div>
+    
+    <div id="piece">
+        <img src="../public/assets/imgsQuebraCabeca/quebra1/p1.png" draggable="true" ondragstart="drag(event)" id="p1">
+        <img src="../public/assets/imgsQuebraCabeca/quebra1/p2.png" draggable="true" ondragstart="drag(event)" id="p2">
+        <img src="../public/assets/imgsQuebraCabeca/quebra1/p3.png" draggable="true" ondragstart="drag(event)" id="p3">
+        <img src="../public/assets/imgsQuebraCabeca/quebra1/p4.png" draggable="true" ondragstart="drag(event)" id="p4">
+        <img src="../public/assets/imgsQuebraCabeca/quebra1/p5.png" draggable="true" ondragstart="drag(event)" id="p5">
+        <img src="../public/assets/imgsQuebraCabeca/quebra1/p6.png" draggable="true" ondragstart="drag(event)" id="p6">
+        <img src="../public/assets/imgsQuebraCabeca/quebra1/p7.png" draggable="true" ondragstart="drag(event)" id="p7">
+        <img src="../public/assets/imgsQuebraCabeca/quebra1/p8.png" draggable="true" ondragstart="drag(event)" id="p8">
+        <img src="../public/assets/imgsQuebraCabeca/quebra1/p9.png" draggable="true" ondragstart="drag(event)" id="p9">
+        <img src="../public/assets/imgsQuebraCabeca/quebra1/p10.png" draggable="true" ondragstart="drag(event)" id="p10">
+        <img src="../public/assets/imgsQuebraCabeca/quebra1/p11.png" draggable="true" ondragstart="drag(event)" id="p11">
+        <img src="../public/assets/imgsQuebraCabeca/quebra1/p12.png" draggable="true" ondragstart="drag(event)" id="p12">
+    </div>
+    <button style="margin: 200px;" onclick="changePiece()">Trocar peça</button>
+</body>
+</html>
+<script>
+
+var vetorPecas = [];
+
+var pieces = []
+var places = []
+
+pieces = document.querySelectorAll("#piece img");
+places = document.querySelectorAll(".linha>div");
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    console.log(ev)
+  if(ev.target.localName == "div"){
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    if(!piece.innerHTML.includes('img')){
+        vetorPecas = document.querySelectorAll(".linha>div");
+        for(var i = 0; i<vetorPecas.length; i++){
+            vetorPecas[i].style.border = 0;
+        }
+        authPuzzle();
+    }
+    changePiece();
+  }else{
+    alert("as peças não podem se sobrepor!")
+  }
+}
+
+function changePiece(){
+    var aleatorio = Number((Math.random() * (piece.childElementCount - 1)).toFixed(0))+1; 
+    console.log(aleatorio);
+    for(var i = 1; i <= piece.childElementCount; i++){
+        if(document.querySelectorAll(`#piece img:nth-child(${i})`)[0].style.visibility != "hidden"){
+            document.querySelectorAll(`#piece img:nth-child(${i})`)[0].style.visibility = "hidden"
+        }
+    }
+    randomPiece = document.querySelectorAll(`#piece img:nth-child(${aleatorio})`);
+    randomPiece[0].style.visibility = "visible";
+}
+
+function authPuzzle(){
+
+
+    var auth = true;
+    
+    for(var i = 0; i < places.length; i++){
+        if(pieces[i].attributes.id.value != places[i].attributes.piece.value){
+            auth = false;
+        }
+    }
+    if(auth){
+        alert("Puzzle completo");
+    }else{
+        alert("Tem algo errado no puzzle")
+    }
+}
+
+// function pieceAttr(){
+//     const pieceAttribute = document.createAttribute("piece");
+//     for(var i = 1; i <= piece.childElementCount; i++){
+//         var attrValue = `p${i}`;
+//         pieceAttribute.value = attrValue;
+//         document.querySelectorAll(`.linha>div`)[i].setAttributeNode(pieceAttribute);
+//     }
+//     console.log(document.querySelectorAll(`.linha>div`)[0].getAttributeNode("piece"));
+// }
+
+changePiece();
+
+</script>

@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #CFC9C2;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 0;
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 375px;
+    height: 399.67px;
+    border-right: 2px solid #BB9AF7;
+    border-bottom: 2px solid #BB9AF7;
+    border-radius: 15px;
+    background-color: #24283B;
+}
+.formulario img{
+    height: 50px;
+}
+.formulario .campo{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.formulario .campo input{
+    background-color: transparent;
+    border-bottom: 1px solid #BB9AF7;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.formulario .campo input:focus{
+    outline: none;
+}
+.formulario .ancora{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.formulario .ancora button{
+    width: 93px;
+    height: 39px;
+    border-radius: 10px;
+    background-color: #BB9AF7;
+    background-image: url(../assets/imgs/Arrow.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.formulario .ancora a{
+    color: #BB9AF7;
+    font-size: 10px;
+    padding-top: 3px;
+}

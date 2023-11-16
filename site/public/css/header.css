@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #CFC9C2;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+html{
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+}
+
+body{
+    background-color: #1A1B26;
+    padding-top: 70px;
+}
+
+.header-top{
+    height: 70px;
+    width: 100%;
+    background-color: #24283B;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(to right, #F7768E 0%, #9AA5CE 100%) 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+}
+
+.header-top .menu-options{
+    display: flex;
+    justify-content: space-between;
+    width: 473px;
+}
+
+.header-top .logo{
+    margin-left: 25px;
+}
+
+.header-top a .login{
+    color: #9AA5CE;
+    margin-right: 25px;
+}
