@@ -20,7 +20,7 @@ header{
     justify-content: space-between;
     align-items: center;
 }
-header>img{
+header>a>img{
     margin-top: 25px;
 }
 header .links{

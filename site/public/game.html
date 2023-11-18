@@ -4,8 +4,172 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Gamer Side - Play</title>
+    <link rel="stylesheet" href="css/side-header.css">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/imgs/logoYGS.svg" type="image/x-icon">
 </head>
-<body>
-    
+<body onload="setPieces(3)">
+    <header>
+        <a href="index.html"><img src="assets/imgs/logoYGS.svg"></a>
+        <div class="links">
+            <a href=""><span>Voltar</span></a>
+            <!-- <a href=""><span>Referências</span></a> -->
+        </div>
+        <div class="icons">
+            <!-- <a href=""><img src="assets/imgs/bell.png"></a> -->
+            <a href=""><img src="assets/imgs/user.png"></a>
+            <a href="landingpage.html"><img src="assets/imgs/sign-out.png"></a>
+        </div>
+    </header>
+    <section>
+        <div class="puzzle" style="display: flex;">
+            <div class="game" id="game">
+                <div class="linha">
+                    <div id="a" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p1"></div>
+                    <div id="b" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p2"></div>
+                    <div id="c" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p3"></div>
+                    <div id="d" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p4"></div>
+                </div>
+                <div class="linha">
+                    <div id="e" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p5"></div>
+                    <div id="f" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p6"></div>
+                    <div id="g" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p7"></div>
+                    <div id="h" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p8"></div>
+                </div>
+                <div class="linha">
+                    <div id="i" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p9"></div>
+                    <div id="j" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p10"></div>
+                    <div id="k" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p11"></div>
+                    <div id="l" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p12"></div>
+                </div>
+            </div>
+            
+            <div id="options" class="options" style="display: block;">
+                <div id="piece">
+                    
+                </div>
+                <button onclick="changePiece()">Trocar peça</button>
+            </div>
+
+            <div class="texto" id="texto" style="display: none; flex-direction: column; align-items: center; width: 200px; gap: 20px;">
+                <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque perspiciatis ullam nemo magnam nisi laudantium error voluptas a, deserunt maxime mollitia cumque labore veniam quas odit qui sed, eos similique.</span>
+                <a href="index.html"><button>Voltar</button></a>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
+<script>
+
+    function setPieces(n){
+        piece.innerHTML = `
+        <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p1.png" draggable="true" ondragstart="drag(event)" id="p1">
+        <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p2.png" draggable="true" ondragstart="drag(event)" id="p2">
+        <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p3.png" draggable="true" ondragstart="drag(event)" id="p3">
+        <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p4.png" draggable="true" ondragstart="drag(event)" id="p4">
+        <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p5.png" draggable="true" ondragstart="drag(event)" id="p5">
+        <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p6.png" draggable="true" ondragstart="drag(event)" id="p6">
+        <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p7.png" draggable="true" ondragstart="drag(event)" id="p7">
+        <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p8.png" draggable="true" ondragstart="drag(event)" id="p8">
+        <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p9.png" draggable="true" ondragstart="drag(event)" id="p9">
+        <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p10.png" draggable="true" ondragstart="drag(event)" id="p10">
+        <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p11.png" draggable="true" ondragstart="drag(event)" id="p11">
+        <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p12.png" draggable="true" ondragstart="drag(event)" id="p12">
+        `
+
+        changePiece();
+    }
+
+    var vetorPecas = [];
+    
+    var pieces = []
+    var places = []
+    
+    pieces = document.querySelectorAll("#piece img");
+    places = document.querySelectorAll(".linha>div");
+
+    var pieceNow;
+    
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+    
+    function drag(ev) {
+      pieceNow = ev.target.id;  
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+    
+    function drop(ev) {
+        console.log(ev)
+        console.log(pieceNow);
+        console.log(ev.target.attributes[3])
+      if(ev.target.localName == "div"){
+        if(pieceNow == ev.target.attributes[3].value){
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+            changePiece();
+        }else{
+            alert("Peça no lugar errado!")  
+        }
+        if(!piece.innerHTML.includes('img')){
+            vetorPecas = document.querySelectorAll(".linha>div");
+            for(var i = 0; i<vetorPecas.length; i++){
+                vetorPecas[i].style.border = 0;
+                game.style.border = "2px solid #BB9AF7"
+            }
+            // authPuzzle();
+            options.style.display = "none";
+            texto.style.display = "block";
+        }
+      }else{
+        alert("as peças não podem se sobrepor!")
+      }
+    }
+    
+    function changePiece(){
+        // var aleatorio = Number((Math.random() * (piece.childElementCount - 1)).toFixed(0))+1;
+        var aleatorio = parseInt(Math.random() * Number(piece.childElementCount) + 1) 
+        console.log(aleatorio);
+        for(var i = 1; i <= piece.childElementCount; i++){
+            if(document.querySelectorAll(`#piece img:nth-child(${i})`)[0].style.visibility != "hidden"){
+                document.querySelectorAll(`#piece img:nth-child(${i})`)[0].style.visibility = "hidden"
+            }
+        }
+        randomPiece = document.querySelectorAll(`#piece img:nth-child(${aleatorio})`);
+        if(randomPiece.length > 0){
+            randomPiece[0].style.visibility = "visible";
+        }
+    }
+    
+    function authPuzzle(){
+        var auth = true;
+        
+        for(var i = 0; i < places.length; i++){
+            if(pieces[i].attributes.id.value != places[i].attributes.piece.value){
+                auth = false;
+            }
+        }
+        if(auth){
+            // alert("Puzzle completo");
+        }else{
+            // alert("Tem algo errado no puzzle")
+        }
+    }
+    
+    // function pieceAttr(){
+    //     const pieceAttribute = document.createAttribute("piece");
+    //     for(var i = 1; i <= piece.childElementCount; i++){
+    //         var attrValue = `p${i}`;
+    //         pieceAttribute.value = attrValue;
+    //         document.querySelectorAll(`.linha>div`)[i].setAttributeNode(pieceAttribute);
+    //     }
+    //     console.log(document.querySelectorAll(`.linha>div`)[0].getAttributeNode("piece"));
+    // }
+    
+    changePiece();
+    
+    </script>

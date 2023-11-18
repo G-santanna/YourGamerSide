@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Gamer Side - Pesquisa</title>
+    <link rel="stylesheet" href="css/side-header.css">
+    <link rel="stylesheet" href="css/survey.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/imgs/logoYGS.svg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="assets/imgs/logoYGS.svg"></a>
+        <div class="links">
+            <a href=""><span>Voltar</span></a>
+            <!-- <a href=""><span>Referências</span></a> -->
+        </div>
+        <div class="icons">
+            <!-- <a href=""><img src="assets/imgs/bell.png"></a> -->
+            <a href=""><img src="assets/imgs/user.png"></a>
+            <a href="landingpage.html"><img src="assets/imgs/sign-out.png"></a>
+        </div>
+    </header>
+    <section class="content">
+        <h1 class="question">Gênero</h1>
+        <div class="answer">
+            <div class="campo">
+                <input type="radio" name="genero" id="masculino"><span>Masculino</span><br>
+            </div>
+            <div class="campo">
+                <input type="radio" name="genero" id="feminino"><span>Feminino</span><br>
+            </div>
+            <div class="campo">
+                <input type="radio" name="genero" id="nao-binario"><span>Não-Binário</span><br>
+            </div>
+            <div class="campo">
+                <input type="radio" name="genero" id="outro"><span>Outro</span>
+            </div>
+        </div>
+        <div class="ancora">
+            <button onclick="answer()"></button>
+        </div>
+    </section>
+</body>
+</html>
+<script>
+    var answers = []
+    var question = 1;
+
+    function answer(){
+        var question = document.querySelector(".question");
+    
+        if(question == 1){
+            var radio = document.querySelectorAll("input[name='genero']");
+            console.log(radio);
+
+        }
+    }
+
+</script>

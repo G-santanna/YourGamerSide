@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #CFC9C2;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+body{
+    display: flex;
+    align-items: center;
+}
+section{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+section h1{
+    background: -webkit-linear-gradient(0deg, #9AA5CE 0%, #F7768E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 30px;
+    font-style: italic;
+}
+section .answer{
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+section .answer input{
+    margin-right: 5px;
+}
+section .answer input, span{
+    margin-bottom: 25px;
+}
+section button{
+    width: 93px;
+    height: 39px;
+    border-radius: 10px;
+    background-color: #BB9AF7;
+    background-image: url(../assets/imgs/Arrow.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
