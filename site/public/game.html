@@ -11,11 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/imgs/logoYGS.svg" type="image/x-icon">
 </head>
-<body onload="setPieces(3)">
+<body onload="setPieces(6)">
     <header>
         <a href="index.html"><img src="assets/imgs/logoYGS.svg"></a>
         <div class="links">
-            <a href=""><span>Voltar</span></a>
+            <a href="index.html"><span>Voltar</span></a>
             <!-- <a href=""><span>Referências</span></a> -->
         </div>
         <div class="icons">
@@ -79,7 +79,6 @@
         <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p11.png" draggable="true" ondragstart="drag(event)" id="p11">
         <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p12.png" draggable="true" ondragstart="drag(event)" id="p12">
         `
-
         changePiece();
     }
 
@@ -131,7 +130,6 @@
     }
     
     function changePiece(){
-        // var aleatorio = Number((Math.random() * (piece.childElementCount - 1)).toFixed(0))+1;
         var aleatorio = parseInt(Math.random() * Number(piece.childElementCount) + 1) 
         console.log(aleatorio);
         for(var i = 1; i <= piece.childElementCount; i++){

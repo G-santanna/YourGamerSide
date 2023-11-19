@@ -1,4 +1,6 @@
-body {
+body{
+    display: flex;
+
     --sb-track-color: #1A1B26;
     --sb-thumb-color: linear-gradient(0deg,rgba(247,118,142,1)  0%, rgba(154,165,206,1)  100%);
     --sb-size: 7px;
@@ -18,37 +20,30 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
 }
-.section1, .section2, .section3{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 575px;
+header{
+    position: fixed;
 }
-
-.text{
-    width: 300px;
-    height: 350px;
+section{
+    padding-left: 150px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.content{
+    height: 100vh;
+    width: calc(100vw - 160px);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
-
-.text h1{
-    background: -webkit-linear-gradient(0deg, #9AA5CE 0%, #F7768E 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    width: fit-content;
-    font-size: 30px;
-    font-style:italic;
-    font-weight: 800;
-}
-
-.text span{
-    font-size: 20px;
-    font-weight: 300;
-    display: block;
-}
-
-.imagem img{
+.content img{
     width: 600px;
+    border-style: solid;
+    border-width: 3px;
+    border-image: linear-gradient(90deg,rgba(247,118,142,1)  0%, rgba(154,165,206,1)  100%) 1;
+}
+.content span{
+    text-align: center;
+    padding: 0 20% 0 20%;
 }

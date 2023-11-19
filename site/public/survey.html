@@ -15,7 +15,7 @@
     <header>
         <a href="index.html"><img src="assets/imgs/logoYGS.svg"></a>
         <div class="links">
-            <a href=""><span>Voltar</span></a>
+            <a href="index.html"><span>Voltar</span></a>
             <!-- <a href=""><span>Referências</span></a> -->
         </div>
         <div class="icons">
@@ -39,6 +39,7 @@
             <div class="campo">
                 <input type="radio" name="genero" id="outro"><span>Outro</span>
             </div>
+            
         </div>
         <div class="ancora">
             <button onclick="answer()"></button>
@@ -51,13 +52,93 @@
     var question = 1;
 
     function answer(){
-        var question = document.querySelector(".question");
+        var questionField = document.querySelector(".question");
+        var answerField = document.querySelector(".answer");
     
         if(question == 1){
-            var radio = document.querySelectorAll("input[name='genero']");
-            console.log(radio);
-
+            var radio = document.querySelector('input[name="genero"]:checked').id;
+            answers.push(radio);
+            question++;
+            questionField.innerHTML = `Data de nascimento`;
+            answerField.innerHTML = `
+            <div class="campo">
+                <input type="date">
+            </div>
+            `
+        }else if(question == 2){
+            var dtNasc = document.querySelector(".campo input[type='date']").value;
+            answers.push(dtNasc);
+            question++;
+            questionField.innerHTML = `Quando você começou a jogar?`;
+            answerField.innerHTML = `
+            <div class="campo">
+                <input type="number" min="1900" max="2023" step="1" placeholder="2023" />
+            </div>
+            `
+        }else if(question == 3){
+            var startPlaying = document.querySelector(".campo input").value;
+            answers.push(startPlaying);
+            question++;
+            questionField.innerHTML = `Qual foi seu ápice de comprometimento com o jogo?`;
+            answerField.innerHTML = `
+            <div class="campo">
+                <select name="" id="compromisse">
+                    <option value="freetime">Player de tempo livre</option>
+                    <option value="casual">Player casual</option>
+                    <option value="ranked">Player de ranqueadas</option>
+                    <option value="amador">Player competidor amador</option>
+                    <option value="pro">Player competidor profissional</option>
+                </select>
+            </div>
+            `
+        }else if(question == 4){
+            var gameCompromisse = compromisse.value;
+            answers.push(gameCompromisse);
+            if(answers[0] == "feminino" || answers[0] == "nao-binario" || answers[0] == "outro"){
+                question++;
+                questionField.innerHTML = `Qual foi a maior dificuldade que você encontrou<br>no CS:GO sendo mulher/não-binário/outro?`;
+                answerField.innerHTML = `
+                <div class="campo">
+                    <select id="difficulty">
+                        <option value="agressão verbal">Já sofri agressão verbal em partidas que meu desempenho não foi muito bom</option>
+                        <option value="agressão verbal">Já sofri agressao verbal por tentar ajudar o time com alguma estrategia</option>
+                        <option value="assédio">Já fui comparada sexualmente com alguma personagem por sermos do mesmo genero</option>
+                        <option value="abuso psicológico">Sofri abuso psicológico de 1 ou mais membros de equipe por ser a única do gênero feminino</option>
+                        <option value="nenhuma">Nenhuma das anteriores</option>
+                    </select>
+                </div>
+                `
+            }else{
+                question += 2;
+                answer();
+            }
+        }else if(question == 5){
+            var gameDifficulty = difficulty.value;
+            answers.push(gameDifficulty);
+            if(answers[0] == "feminino" || answers[0] == "nao-binario" || answers[0] == "outro"){
+                question++;
+                questionField.innerHTML = `Qual era a sua expectativa sobre o cenário do jogo?`;
+                answerField.innerHTML = `
+                <div class="campo">
+                    <select id="expectation">
+                        <option value="amigável">Ambiente amigável</option>
+                        <option value="pacífico">Ambiente pacífico</option>
+                        <option value="hostil">Abiente hostil</option>
+                        <option value="nenhuma">Sem expectativa</option>
+                    </select>
+                </div>
+                `
+            }
+        }else if(question == 6){
+            if(document.getElementById("expectation") != null){
+                var gameExpectation = expectation.value;
+                answers.push(gameExpectation);
+            }
+            questionField.innerHTML = `OBRIGADO PELA PARTICIPAÇÃO`;
+                answerField.innerHTML = ``
+            question++;
+        }else{
+            window.location = "index.html"
         }
     }
-
 </script>

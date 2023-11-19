@@ -27,9 +27,9 @@ section h1{
     font-weight: 800;
     font-size: 30px;
     font-style: italic;
+    text-align: center;
 }
 section .answer{
-    width: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,9 +37,28 @@ section .answer{
 }
 section .answer input{
     margin-right: 5px;
+    background-color: transparent;
+    text-align: center;
 }
 section .answer input, span{
     margin-bottom: 25px;
+    font-size: 18px;
+}
+section .answer select{
+    background-color: transparent;
+    text-align: center;
+    font-size: 18px;
+}
+section .answer select option{
+    background-color: #1A1B26;
+}
+input[type="date"]::-webkit-calendar-picker-indicator{
+    filter: invert(83%) sepia(73%) saturate(29%) hue-rotate(342deg) brightness(87%) contrast(87%);;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 section button{
     width: 93px;
@@ -49,4 +68,7 @@ section button{
     background-image: url(../assets/imgs/Arrow.svg);
     background-repeat: no-repeat;
     background-position: center;
+}
+section .answer input:focus, button:focus, select:focus{
+    outline: none;
 }

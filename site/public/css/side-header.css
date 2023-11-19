@@ -28,6 +28,7 @@ header .links{
     flex-direction: column;
     height: 120px;
     justify-content: space-evenly;
+    align-items: center;
 }
 header .icons{
     margin: 0 11px 40px 11px;
