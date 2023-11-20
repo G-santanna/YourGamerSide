@@ -1,12 +1,29 @@
+#startButton{
+    width: 730px;
+    height: 488px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#startButton button{
+    width: 150px;
+    height: 75px;
+    font-size: 30px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
 .game{
+    display: none;
     width: fit-content;
     height: fit-content;
     background-color: #24283B;
     box-sizing: content-box;
     border: 1px dashed #BB9AF7;
+    opacity: 0.5;
 }
 .game .linha{
     display: flex;
+    
 }
 .game .linha>div {
   float: left;
@@ -28,6 +45,7 @@
     height: 160px;
     position: absolute;
     visibility: hidden;
+    pointer-events: none;
 }
 .puzzle{
     width: 100%;
@@ -37,13 +55,38 @@
     gap: 120px;
 }
 .puzzle .options{
+    width: fit-content;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
+    font-size: 17px;
 }
 .puzzle .options #piece{
     margin-bottom: 20px;
     border: #BB9AF7 solid 2px;
+}
+i{
+    background: -webkit-linear-gradient(0deg, #F7768E 0%, #9AA5CE 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.puzzle .texto{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    gap: 20px;
+}
+.tempo{
+    width: 180px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
 }
 header{
     position: fixed;
@@ -68,4 +111,21 @@ section button{
     border-radius: 15px;
     width: 100px;
     height: 40px;
+}
+section .puzzleTitle{
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 120px;
+    height: 120px;
+    justify-content: center;
+    /* background: linear-gradient(90deg,rgba(247,118,142,1)  0%, rgba(154,165,206,1)  100%); */
+    background-color: #BB9AF7;
+    border-radius: 150px;
+}
+section .puzzleTitle img{
+    height: 80px;
 }

@@ -39,7 +39,7 @@ body::-webkit-scrollbar-thumb {
     -webkit-text-fill-color: transparent;
     width: fit-content;
     font-size: 30px;
-    font-style:italic;
+    font-style: italic;
     font-weight: 800;
 }
 

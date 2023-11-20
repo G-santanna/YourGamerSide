@@ -8,7 +8,6 @@ body{
     scrollbar-color: var(--sb-thumb-color) 
                      var(--sb-track-color);
 }
-
 body::-webkit-scrollbar {
   width: var(--sb-size) 
 }
@@ -27,11 +26,10 @@ section{
     padding-left: 150px;
     display: flex;
     flex-direction: column;
-    
 }
 .content{
     height: 100vh;
-    width: calc(100vw - 160px);
+    width: calc(100vw - 157px);
     display: flex;
     flex-direction: column;
     justify-content: center;

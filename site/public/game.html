@@ -25,7 +25,12 @@
         </div>
     </header>
     <section>
+        <div class="puzzleTitle">
+        </div>
         <div class="puzzle" style="display: flex;">
+            <div id="startButton">
+                <button onclick="start()">Start</button>
+            </div>
             <div class="game" id="game">
                 <div class="linha">
                     <div id="a" ondrop="drop(event)" ondragover="allowDrop(event)" piece="p1"></div>
@@ -47,14 +52,21 @@
                 </div>
             </div>
             
-            <div id="options" class="options" style="display: block;">
+            <div id="options" class="options">
+                <span><i>Your time</i> > <span id="yourtime">00:00:00</span></span>
+                <span>Best time > <span id="record">00:00:30</span></span>
                 <div id="piece">
                     
                 </div>
                 <button onclick="changePiece()">Trocar peça</button>
             </div>
 
-            <div class="texto" id="texto" style="display: none; flex-direction: column; align-items: center; width: 200px; gap: 20px;">
+            <div class="tempo" style="display: none;">
+                <span><i>Your time</i> > <span id="yourtime2"></span></span>
+                <button onclick="teamText()">Next</button>
+            </div>
+
+            <div class="texto" id="texto">
                 <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque perspiciatis ullam nemo magnam nisi laudantium error voluptas a, deserunt maxime mollitia cumque labore veniam quas odit qui sed, eos similique.</span>
                 <a href="index.html"><button>Voltar</button></a>
             </div>
@@ -83,7 +95,33 @@
         <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p11.png" draggable="true" ondragstart="drag(event)" id="p11">
         <img src="../public/assets/imgsQuebraCabeca/quebra${n}/p12.png" draggable="true" ondragstart="drag(event)" id="p12">
         `
+
+        game.style.backgroundImage = `url("./assets/imgsQuebraCabeca/quebra${n}/quebra-montado.png")`
+        
         changePiece();
+
+        var logoPlace = document.getElementsByClassName("puzzleTitle")[0];
+        var textoTime = document.querySelector(".texto>span");
+
+        if(n == 1){
+            logoPlace.innerHTML = '<img src="assets/imgs/nigmalogobig.png">'
+            textoTime.innerHTML = 'O time do leste europeu é simplesmente um fenômeno no cenário inclusivo do CS:GO, desde 2021 já foram 8 títulos conquistados por elas. O time é composto por ANa, twenty3, vilga, tory & Kat ,além do coach hyskeee.'
+        }else if(n == 2){
+            logoPlace.innerHTML = '<img src="assets/imgs/navilogobig.png">'
+            textoTime.innerHTML = 'O time polones vem marcando presença nos playoffs dos principais campeonatos desde 2022, composto por vicu, Angelka, Hanka, Liina & LETi ,além do coach AlcesT. Em 2023 a NaVi obteve 2 vice-campeonatos.'
+        }else if(n == 3){
+            logoPlace.innerHTML = '<img src="assets/imgs/furialogobig.png">'
+            textoTime.innerHTML = 'As brasileiras são invencíveis no território brasileiro, e internacionalmente colecionam 4 playoffs desde 2022. O time é composto por KaahSENSEI, GaBi, izaa, gabs & annaEX ,além do coach RMN.'
+        }else if(n == 4){
+            logoPlace.innerHTML = '<img src="assets/imgs/fluxologobig.webp">'
+            textoTime.innerHTML = 'Recém formada a line-up, as brasileiras começaram com tudo no cenário nacional, conquistando 1 título e 2 vice-campeonatos. Formada por goddess, julih, nani, poppins & yungher ,além do coach darkpsy, elas jogarão seu primeiro internacional em dezembro de 2023.'
+        }else if(n == 5){
+            logoPlace.innerHTML = '<img src="assets/imgs/g2oyalogobig.webp">'
+            textoTime.innerHTML = 'As europeias tem o hype a seu favor, porém elas ainda não tiveram um desafio grande em 2023. Elas contam com a dupla da Suécia juliano e zAAz para o sucesso, kr4sylya, kyossa & ramziiN completam a line-up, além do coach Jumpy.'
+        }else if(n == 6){
+            logoPlace.innerHTML = '<img src="assets/imgs/eggoldlogobig.png">'
+            textoTime.innerHTML = 'Representando o cenário norte-americano no aqui no Your Gamer Side, a organização Evil Geniuses entrou no cenário inclusivo em 2007! a line-up atual é composta por PiggyKiki, m1lky, 7licious, Juli & vanessa, além do coach muenster.'
+        }
     }
 
     var vetorPecas = [];
@@ -124,13 +162,21 @@
                 vetorPecas[i].style.border = 0;
                 game.style.border = "2px solid #BB9AF7"
             }
-            // authPuzzle();
+            clearInterval(timerID);
+            const result = new Date(segundos * 1000).toISOString().slice(11, 19)
+            // alert(`Seu tempo foi : ${result}`)
+            yourtime2.innerHTML = result;
             options.style.display = "none";
-            texto.style.display = "block";
+            document.getElementsByClassName("tempo")[0].style.display = "flex"
         }
       }else{
         alert("as peças não podem se sobrepor!")
       }
+    }
+
+    function teamText(){
+        document.getElementsByClassName("tempo")[0].style.display = "none";
+        texto.style.display = "flex";
     }
     
     function changePiece(){
@@ -147,31 +193,34 @@
         }
     }
     
-    function authPuzzle(){
-        var auth = true;
+    var timerID;
+
+    var segundos = 0;
+
+    function start(){
+       
+        startButton.style.display = "none"
+        game.style.display = "block"
+
+        setTimeout(() => {
+            game.style.backgroundImage = "none";
+            game.style.opacity = "1";
+            
+            timerID = setInterval(() => {
+            segundos++;
+
+            const result = new Date(segundos * 1000).toISOString().slice(11, 19);
+            yourtime.innerHTML = result;
+
+        }, 1000);
+
+        for(var i = 0; document.querySelectorAll("#piece img"); i++){
+            document.querySelectorAll("#piece img")[i].style.pointerEvents = "auto";
+        }
+        }, 3000);
+
         
-        for(var i = 0; i < places.length; i++){
-            if(pieces[i].attributes.id.value != places[i].attributes.piece.value){
-                auth = false;
-            }
-        }
-        if(auth){
-            // alert("Puzzle completo");
-        }else{
-            // alert("Tem algo errado no puzzle")
-        }
     }
-    
-    // function pieceAttr(){
-    //     const pieceAttribute = document.createAttribute("piece");
-    //     for(var i = 1; i <= piece.childElementCount; i++){
-    //         var attrValue = `p${i}`;
-    //         pieceAttribute.value = attrValue;
-    //         document.querySelectorAll(`.linha>div`)[i].setAttributeNode(pieceAttribute);
-    //     }
-    //     console.log(document.querySelectorAll(`.linha>div`)[0].getAttributeNode("piece"));
-    // }
-    
-    changePiece();
+
     
     </script>
