@@ -109,7 +109,7 @@
                 </div>
                 `
             }else{
-                question += 2;
+                question += 3;
                 answer();
             }
         }else if(question == 5){
@@ -123,19 +123,37 @@
                     <select id="expectation">
                         <option value="amigável">Ambiente amigável</option>
                         <option value="pacífico">Ambiente pacífico</option>
-                        <option value="hostil">Abiente hostil</option>
+                        <option value="hostil">Ambiente hostil</option>
                         <option value="nenhuma">Sem expectativa</option>
                     </select>
                 </div>
                 `
             }
         }else if(question == 6){
-            if(document.getElementById("expectation") != null){
-                var gameExpectation = expectation.value;
-                answers.push(gameExpectation);
+            var gameExpectation = expectation.value;
+            answers.push(gameExpectation);
+            if(answers[0] == "feminino" || answers[0] == "nao-binario" || answers[0] == "outro"){
+                question++;
+                questionField.innerHTML = `Qual foi a sua realidade sobre o cenário do jogo?`;
+                answerField.innerHTML = `
+                <div class="campo">
+                    <select id="reality">
+                        <option value="amigável">Ambiente amigável</option>
+                        <option value="pacífico">Ambiente pacífico</option>
+                        <option value="hostil">Ambiente hostil</option>
+                    </select>
+                </div>
+                `
+            }
+        }else if(question == 7){
+            if(document.getElementById("reality") != null){
+                var sceneReality = reality.value;
+                answers.push(sceneReality);
             }
             questionField.innerHTML = `OBRIGADO PELA PARTICIPAÇÃO`;
-                answerField.innerHTML = ``
+                answerField.innerHTML = `<img src="./assets/imgs/surveyMedal.webp"><br>
+                <span>Como recompensa pela pesquisa você ganhou essa medalha!</span>
+                `
             question++;
         }else{
             window.location = "index.html"

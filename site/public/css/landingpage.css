@@ -34,7 +34,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .text h1{
-    background: -webkit-linear-gradient(0deg, #9AA5CE 0%, #F7768E 100%);
+    background: -webkit-linear-gradient(0deg, #F7768E 0%, #9AA5CE 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     width: fit-content;

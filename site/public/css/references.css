@@ -36,8 +36,10 @@ section{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    user-select: none;
 }
 .content img{
+    pointer-events: none;
     width: 600px;
     border-style: solid;
     border-width: 3px;

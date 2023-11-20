@@ -26,9 +26,10 @@ header>a>img{
 header .links{
     display: flex;
     flex-direction: column;
-    height: 120px;
+    height: fit-content;
     justify-content: space-evenly;
     align-items: center;
+    gap: 10px;
 }
 header .icons{
     margin: 0 11px 40px 11px;

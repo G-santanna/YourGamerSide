@@ -1,0 +1,36 @@
+header{
+    position: fixed;
+}
+section{
+    width: calc(100vw - 150px);
+    height: 100vh;
+    margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+section h1{
+    background: -webkit-linear-gradient(0deg, #F7768E 0%, #9AA5CE 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 30px;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 100px;
+}
+section table{
+    /* background-color: red; */
+    border-style: solid;
+    border-width: 3px;
+    border-image: linear-gradient(90deg,rgba(247,118,142,1)  0%, rgba(154,165,206,1)  100%) 1;
+    width: 500px;
+    text-align: center;
+}
+section table .tableTitle{
+    background: linear-gradient(to right, #F7768E 0%, #9AA5CE 100%);
+}
+section table .tableTitle td{
+    color: #1A1B26;
+}

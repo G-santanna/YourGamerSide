@@ -11,11 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/imgs/logoYGS.svg" type="image/x-icon">
 </head>
-<body onload="setPieces(6)">
+<body onload="setPieces(sessionStorage.getItem('idQuebra'))">
     <header>
         <a href="index.html"><img src="assets/imgs/logoYGS.svg"></a>
         <div class="links">
-            <a href="index.html"><span>Voltar</span></a>
+            <a href="index.html" onclick="clearIdQuebra()"><span>Voltar</span></a>
             <!-- <a href=""><span>Referências</span></a> -->
         </div>
         <div class="icons">
@@ -63,6 +63,10 @@
 </body>
 </html>
 <script>
+
+    function clearIdQuebra(){
+        sessionStorage.removeItem("idQuebra");
+    }
 
     function setPieces(n){
         piece.innerHTML = `

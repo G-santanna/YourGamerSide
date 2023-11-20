@@ -30,7 +30,9 @@
     visibility: hidden;
 }
 .puzzle{
+    width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 120px;
 }
@@ -43,12 +45,18 @@
     margin-bottom: 20px;
     border: #BB9AF7 solid 2px;
 }
+header{
+    position: fixed;
+    left: 0;
+}
 body{
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 section{
-    margin-left: 30px;
-    width: 100%;
+    margin-left: 150px;
+    width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;

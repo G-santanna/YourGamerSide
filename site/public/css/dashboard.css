@@ -1,0 +1,49 @@
+header{
+    position: fixed;
+}
+section{
+    width: calc(100vw - 150px);
+    height: 100vh;
+    margin-left: 150px;
+    display: flex;
+    flex-wrap: wrap;
+}
+section>div{
+    height: 50vh;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+section>div>div{
+    width: 50%;
+    position: relative;
+}
+section .kpiAge>div{
+    padding: 50px;
+}
+section>div>div h1{
+    font-size: 90px;
+}
+section>div>div h2{
+    position: absolute;
+}
+#menorIdade{
+    left: 30px;
+}
+#maiorIdade{
+    right: 30px;
+}
+.questions{
+    width: 80%;
+}
+.exp, .real, .gender{
+    width: 40%;
+}
+.inclusivo{
+    background: -webkit-linear-gradient(0deg, #F7768E 0%, #9AA5CE 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-style: italic;
+}

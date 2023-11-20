@@ -15,7 +15,8 @@
     <header>
         <a href="index.html"><img src="assets/imgs/logoYGS.svg"></a>
         <div class="links">
-            <!-- <a href=""><span>Jogar</span></a> -->
+            <a href="statistics.html"><span>Estatísticas</span></a>
+            <a href="dashboard.html"><span>Dashboard</span></a>
             <a href="survey.html"><span>Pesquisa</span></a>
             <a href="references.html"><span>Referências</span></a>
         </div>
@@ -28,29 +29,29 @@
     </header>
     <section>
         <div class="linha">
-            <div class="cards">
+            <div class="cards" data-id="1" onclick="redirecionar(this)">
                 <img src="assets/imgs/nigmalogo.png">
                 <h4>Nigma Galaxy</h4>
             </div>
-            <div class="cards">
+            <div class="cards" data-id="3" onclick="redirecionar(this)">
                 <img src="assets/imgs/furialogo.png">
                 <h4>FURIA Fe</h4>
             </div>
-            <div class="cards">
+            <div class="cards" data-id="5" onclick="redirecionar(this)">
                 <img src="assets/imgs/g2oyalogo.png">
                 <h4>G2 Oya</h4>
             </div>
         </div>
         <div class="linha">
-            <div class="cards">
+            <div class="cards" data-id="2" onclick="redirecionar(this)">
                 <img src="assets/imgs/navilogo.png">
                 <h4>NaVi Javelins</h4>
             </div>
-            <div class="cards">
+            <div class="cards" data-id="4" onclick="redirecionar(this)">
                 <img src="assets/imgs/fluxologo.png">
                 <h4>Fluxo Demons</h4>
             </div>
-            <div class="cards">
+            <div class="cards" data-id="6" onclick="redirecionar(this)">
                 <img src="assets/imgs/eggoldlogo.png">
                 <h4>EG Gold</h4>
             </div>
@@ -58,3 +59,10 @@
     </section>
 </body>
 </html>
+<script>
+    function redirecionar(card){
+        var idQuebra = card.getAttribute("data-id")
+        sessionStorage.setItem("idQuebra", idQuebra);
+        window.location = "game.html";
+    }
+</script>
