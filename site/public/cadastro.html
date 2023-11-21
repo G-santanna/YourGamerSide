@@ -19,15 +19,16 @@
     <div class="formulario">
         <a href="landingpage.html"><img src="./assets/imgs/logoYGS.svg"></a>
         <div class="campo">
-            <input placeholder="USERNAME">
-            <input placeholder="E-MAIL">
-            <input placeholder="SENHA">
-            <input placeholder="CONFIRME A SENHA">
+            <input id="user" placeholder="USERNAME">
+            <input id="email" placeholder="E-MAIL">
+            <input type="password" id="senha" placeholder="SENHA">
+            <input type="password" id="confirm" placeholder="CONFIRME A SENHA">
         </div>
         <div class="ancora">
-            <button></button>
+            <button onclick="validarCadastro()"></button>
             <a href="login.html">já tem login?</a>
         </div>
     </div>
 </body>
 </html>
+<script src="./js/formsValidations.js"></script>

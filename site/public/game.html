@@ -164,7 +164,6 @@
             }
             clearInterval(timerID);
             const result = new Date(segundos * 1000).toISOString().slice(11, 19)
-            // alert(`Seu tempo foi : ${result}`)
             yourtime2.innerHTML = result;
             options.style.display = "none";
             document.getElementsByClassName("tempo")[0].style.display = "flex"

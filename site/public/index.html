@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/imgs/logoYGS.svg" type="image/x-icon">
 </head>
-<body>
+<body onload="validarSessao()">
     <header>
         <a href="index.html"><img src="assets/imgs/logoYGS.svg"></a>
         <div class="links">
@@ -59,7 +59,7 @@
     </section>
 </body>
 </html>
-<script>
+<script src="js/sessao.js">
     function redirecionar(card){
         var idQuebra = card.getAttribute("data-id")
         sessionStorage.setItem("idQuebra", idQuebra);
