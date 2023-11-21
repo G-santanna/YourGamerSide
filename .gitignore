@@ -1,5 +1,5 @@
 /docs
 contexto.txt
 logo.png
-/node_modules
-/package-lock.json
+node_modules
+package-lock.json
