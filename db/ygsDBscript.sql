@@ -34,6 +34,5 @@ create table statistic(
     primary key (fkUser, fkPuzzle),
     foreign key (fkUser) references usuario(idUser),
     foreign key (fkPuzzle) references puzzle(idPuzzle),
-    run time,
-    dateRun datetime
+    runTime time
 );

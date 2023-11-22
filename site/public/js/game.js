@@ -110,7 +110,9 @@ function drop(ev) {
         tempo = new Date(segundos * 1000).toISOString().slice(11, 19)
         yourtime2.innerHTML = tempo;
         options.style.display = "none";
-        document.getElementsByClassName("tempo")[0].style.display = "flex"
+        document.getElementsByClassName("tempo")[0].style.display = "flex";
+        cadastrarRun(tempo);
+        
     }
   }else{
     alert("as peças não podem se sobrepor!")
@@ -124,9 +126,9 @@ function cadastrarRun(runTime){
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          idUserServer: sessionStorage.userID,
-          idPuzzleServer: sessionStorage.puzzleID,
-          runTimeServer: runTime
+          idUser: sessionStorage.userID,
+          idPuzzle: sessionStorage.puzzleID,
+          runTime: runTime
         }),
       })
         .then(function (resposta) {

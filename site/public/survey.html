@@ -110,6 +110,9 @@
                 `
             }else{
                 question += 3;
+                answers.push('null')
+                answers.push('null')
+                answers.push('null')
                 answer();
             }
         }else if(question == 5){
@@ -150,6 +153,7 @@
                 var sceneReality = reality.value;
                 answers.push(sceneReality);
             }
+
             questionField.innerHTML = `OBRIGADO PELA PARTICIPAÇÃO`;
                 answerField.innerHTML = `<img src="./assets/imgs/surveyMedal.webp"><br>
                 <span>Como recompensa pela pesquisa você ganhou essa medalha!</span>
