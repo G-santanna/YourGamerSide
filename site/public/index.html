@@ -23,7 +23,7 @@
         <div class="icons">
             <!-- <a href=""><img src="assets/imgs/bell.png"></a> -->
             <a href=""><img src="assets/imgs/user.png"></a>
-            <a href="landingpage.html"><img src="assets/imgs/sign-out.png"></a>
+            <a href="landingpage.html" onclick="limparSessao()"><img src="assets/imgs/sign-out.png"></a>
             <!-- <a href=""><img src="assets/imgs/settings.png"></a> -->
         </div>
     </header>
@@ -59,10 +59,11 @@
     </section>
 </body>
 </html>
-<script src="js/sessao.js">
+<script src="js/sessao.js"></script>
+<script>
     function redirecionar(card){
-        var idQuebra = card.getAttribute("data-id")
-        sessionStorage.setItem("idQuebra", idQuebra);
+        var puzzleID = card.getAttribute("data-id")
+        sessionStorage.setItem("puzzleID", puzzleID);
         window.location = "game.html";
     }
 </script>

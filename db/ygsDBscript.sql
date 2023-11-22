@@ -28,7 +28,7 @@ create table answer(
     answer varchar(100)
 );
 
-create table stats(
+create table statistic(
 	fkUser int,
     fkPuzzle int,
     primary key (fkUser, fkPuzzle),

@@ -1,7 +1,7 @@
 // sessão
 function validarSessao() {
-    var email = sessionStorage.useremail;
-    var username = sessionStorage.username;
+    var email = sessionStorage.userEmail;
+    var username = sessionStorage.userName;
 
     if (email != null && username != null) {
         //coisinhas
