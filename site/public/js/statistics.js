@@ -14,6 +14,7 @@ function getStatistics(){
                         <td>${(i+1)+sulfix[i]}</td>
                         <td>${resposta[i].runTime.substring(resposta[i].runTime.length-5)}</td>
                         <td>${resposta[i].username}</td>
+                        <td>${resposta[i].puzzleTitle}</td>
                         </tr>
                         `
                     }

@@ -9,7 +9,7 @@ function cadastrar(user, puzzle, runTime) {
 
 function listar(){
     var instrucao = `
-        SELECT * FROM statistic JOIN usuario ON fkUser = idUser ORDER BY runTime LIMIT 10;
+        SELECT * FROM statistic JOIN usuario ON fkUser = idUser JOIN puzzle ON fkPuzzle = idPuzzle ORDER BY runTime LIMIT 10;
     `
     return database.executar(instrucao);
 }

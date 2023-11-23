@@ -4,8 +4,8 @@ use yourgamerside;
 
 create table usuario(
 	idUser int primary key auto_increment,
-    username varchar(45),
-    email varchar(45),
+    username varchar(45) unique,
+    email varchar(45) unique,
     senha varchar(45)
 );
 

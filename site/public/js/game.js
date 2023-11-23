@@ -131,22 +131,6 @@ function cadastrarRun(runTime){
           runTime: runTime
         }),
       })
-        .then(function (resposta) {
-          console.log("resposta: ", resposta);
-  
-          if (resposta.ok) {
-            setTimeout(() => {
-              window.location = "login.html";
-            }, "2000");
-
-          } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
-          }
-        })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-
-        });
 }
 
 //Função para randomizar a próxima peça do tabuleiro

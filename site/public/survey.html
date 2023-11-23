@@ -110,9 +110,6 @@
                 `
             }else{
                 question += 3;
-                answers.push('null')
-                answers.push('null')
-                answers.push('null')
                 answer();
             }
         }else if(question == 5){
@@ -153,6 +150,17 @@
                 var sceneReality = reality.value;
                 answers.push(sceneReality);
             }
+            
+            fetch("/surveys/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    userID: sessionStorage.userID,
+                    answers: answers
+                })
+            })
 
             questionField.innerHTML = `OBRIGADO PELA PARTICIPAÇÃO`;
                 answerField.innerHTML = `<img src="./assets/imgs/surveyMedal.webp"><br>

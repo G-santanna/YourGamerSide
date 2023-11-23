@@ -1,15 +1,15 @@
 function validarLogin(){
-    var email = document.getElementById("email").value;
+    var username = document.getElementById("username").value;
     var senha = document.getElementById("senha").value;
 
-    if(email != "" && senha != ""){
+    if(username != "" && senha != ""){
         fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                emailServer: email,
+                usernameServer: username,
                 senhaServer: senha
             })
         }).then(function (resposta) {
