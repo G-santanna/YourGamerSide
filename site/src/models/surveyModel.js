@@ -10,6 +10,23 @@ function cadastrar(userID, answers) {
     return database.executar(instrucao);
 }
 
+function listar(){
+    var instrucao = `
+        select min(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),answer)), '%Y') 
+        + 0) as minAge,avg(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),answer)), '%Y') 
+        + 0) as avgAge,max(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),answer)), '%Y') 
+        + 0) as maxAge from usuario join answer on fkUser in (select idUser from usuario join answer on idUser = fkUser and fkQuestion = 1 and idUser in (select idUser from usuario join answer on fkUser = idUser and answer = 'feminino'))
+        union 
+        select min(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),answer)), '%Y') 
+        + 0) as minAge,avg(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),answer)), '%Y') 
+        + 0) as avgAge,max(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),answer)), '%Y') 
+        + 0) as maxAge from usuario join answer on fkUser in (select idUser from usuario join answer on idUser = fkUser and fkQuestion = 1 and idUser in (select idUser from usuario join answer on fkUser = idUser and answer = 'masculino'));
+    `;
+
+    return database.executar(instrucao);
+}
+
 module.exports = {
-    cadastrar
+    cadastrar,
+    listar
 };

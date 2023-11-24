@@ -29,10 +29,10 @@ section>div>div h1{
 section>div>div h2{
     position: absolute;
 }
-#menorIdade{
+#menorIdadeI, #menorIdadeM{
     left: 30px;
 }
-#maiorIdade{
+#maiorIdadeI, #maiorIdadeM{
     right: 30px;
 }
 .questions{

@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
-<body>
+<body onload="getSurveysData()">
     <header>
         <a href="index.html"><img src="assets/imgs/logoYGS.svg"></a>
         <div class="links">
@@ -32,15 +32,15 @@
         <div class="kpiAge">
             <div>
                 <span>Idade média do 1º contato dos <span class="inclusivo">inclusivos</span> com o jogo</span>
-                <h1>20y</h1>
-                <h2 id="menorIdade">19y</h2>
-                <h2 id="maiorIdade">21y</h2>
+                <h1 id="mediaIdadeI"></h1>
+                <h2 id="menorIdadeI"></h2>
+                <h2 id="maiorIdadeI"></h2>
             </div>
             <div>
                 <span>Idade média do 1º contato dos homens com o jogo</span>
-                <h1>15y</h1>
-                <h2 id="menorIdade">10y</h2>
-                <h2 id="maiorIdade">20y</h2>
+                <h1 id="mediaIdadeM"></h1>
+                <h2 id="menorIdadeM"></h2>
+                <h2 id="maiorIdadeM"></h2>
             </div>
         </div>
         <div>
@@ -65,6 +65,30 @@
 </body>
 </html>
 <script>
+
+function getSurveysData(){
+    fetch(`/surveys/listar`)
+        .then(resposta => {
+            console.log(resposta);
+            if (resposta.ok) {
+                resposta.json().then(resposta => {
+                    console.log(resposta)
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    mediaIdadeI.innerHTML = `${resposta[0].avgAge}y`
+                    menorIdadeI.innerHTML = `${resposta[0].minAge}y`
+                    maiorIdadeI.innerHTML = `${resposta[0].maxAge}y`
+                    mediaIdadeM.innerHTML = `${resposta[1].avgAge}y`
+                    menorIdadeM.innerHTML = `${resposta[1].minAge}y`
+                    maiorIdadeM.innerHTML = `${resposta[1].maxAge}y`
+                });
+            } else {
+                console.error(`Nenhum dado encontrado ou erro na API`);
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados`+error);
+        });
+}
 
 const labelsBar = ['oi', 'oi2', 'oi3', 'oi4'];
 const dataBar = {
@@ -175,6 +199,7 @@ new Chart(questions, configBar);
 new Chart(expectation, configPieExp);
 new Chart(reality, configPieReal);
 new Chart(gender, configGender);
+
 
 
 </script>

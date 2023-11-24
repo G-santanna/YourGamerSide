@@ -7,4 +7,8 @@ router.post("/cadastrar", function(req, res){
     surveyController.cadastrar(req, res);
 })
 
+router.get("/listar", function(req, res){
+    surveyController.listar(req, res);
+})
+
 module.exports = router;
