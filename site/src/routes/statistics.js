@@ -11,4 +11,8 @@ router.get("/listar", function(req, res){
     statisticController.listar(req,res);
 })
 
+router.get("/record/:idPuzzle/:idUser", function(req, res){
+    statisticController.record(req,res);
+})
+
 module.exports = router;

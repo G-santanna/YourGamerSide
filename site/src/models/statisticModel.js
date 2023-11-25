@@ -14,7 +14,15 @@ function listar(){
     return database.executar(instrucao);
 }
 
+function record(idPuzzle, idUser){
+    var instrucao = `
+        SELECT runTime FROM statistic WHERE fkPuzzle = ${idPuzzle} and fkUser = ${idUser} ORDER BY runTime LIMIT 1;
+    `
+    return database.executar(instrucao);
+}
+
 module.exports = {
     cadastrar,
-    listar
+    listar,
+    record
 };

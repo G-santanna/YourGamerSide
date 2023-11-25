@@ -41,6 +41,27 @@ function setPieces(n){
         logoPlace.innerHTML = '<img src="assets/imgs/eggoldlogobig.png">'
         textoTime.innerHTML = 'Representando o cenário norte-americano no aqui no Your Gamer Side, a organização Evil Geniuses entrou no cenário inclusivo em 2007! a line-up atual é composta por PiggyKiki, m1lky, 7licious, Juli & vanessa, além do coach muenster.'
     }
+
+    fetch(`/statistics/record/${n}/${sessionStorage.userID}`)
+        .then(resposta => {
+            console.log(resposta);
+            if (resposta.status == 200) {
+                resposta.json().then(resposta => {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+        
+                    for(var i = 0; i<resposta.length; i++){
+                        record.innerHTML = `
+                        ${resposta[0].runTime}
+                        `
+                    }
+                });
+            } else {
+                console.error(`Nenhum dado encontrado ou erro na API`);
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados`+error);
+        });
 }
 
 //Função para começar o jogo

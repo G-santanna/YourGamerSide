@@ -47,7 +47,26 @@ function listar(req,res){
                 }
             );
 }
+
+function record(req,res){
+    statisticModel.record(req.params.idPuzzle, req.params.idUser)
+            .then(
+                function (resultado) {
+                    res.status(200).json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao coletar os dados! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
 module.exports = {
     cadastrar,
-    listar
+    listar,
+    record
 }

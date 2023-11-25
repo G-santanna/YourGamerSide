@@ -65,7 +65,7 @@ function answer(){
     }else if(question == 5){
         var gameDifficulty = difficulty.value;
         answers.push(gameDifficulty);
-        if(answers[0] == "feminino" || answers[0] == "nao-binario" || answers[0] == "outro"){
+        if(answers[0] == "feminino" || answers[0] == "não-binário" || answers[0] == "outros"){
             question++;
             questionField.innerHTML = `Qual era a sua expectativa sobre o cenário do jogo?`;
             answerField.innerHTML = `
@@ -82,7 +82,7 @@ function answer(){
     }else if(question == 6){
         var gameExpectation = expectation.value;
         answers.push(gameExpectation);
-        if(answers[0] == "feminino" || answers[0] == "nao-binario" || answers[0] == "outro"){
+        if(answers[0] == "feminino" || answers[0] == "não-binário" || answers[0] == "outros"){
             question++;
             questionField.innerHTML = `Qual foi a sua realidade sobre o cenário do jogo?`;
             answerField.innerHTML = `
