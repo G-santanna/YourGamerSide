@@ -6,7 +6,7 @@ function answer(){
     var answerField = document.querySelector(".answer");
 
     if(question == 1){
-        var radio = document.querySelector('input[name="genero"]:checked').id;
+        var radio = document.querySelector('input[name="genero"]:checked').value;
         answers.push(radio);
         question++;
         questionField.innerHTML = `Data de nascimento`;
@@ -26,7 +26,7 @@ function answer(){
         </div>
         `
     }else if(question == 3){
-        var startPlaying = document.querySelector(".campo input").value;
+        var startPlaying = document.querySelector(".campo input").value+'-01-01';
         answers.push(startPlaying);
         question++;
         questionField.innerHTML = `Qual foi seu ápice de comprometimento com o jogo?`;
@@ -44,7 +44,7 @@ function answer(){
     }else if(question == 4){
         var gameCompromisse = compromisse.value;
         answers.push(gameCompromisse);
-        if(answers[0] == "feminino" || answers[0] == "nao-binario" || answers[0] == "outro"){
+        if(answers[0] == "feminino" || answers[0] == "não-binário" || answers[0] == "outros"){
             question++;
             questionField.innerHTML = `Qual foi a maior dificuldade que você encontrou<br>no CS:GO sendo mulher/não-binário/outro?`;
             answerField.innerHTML = `

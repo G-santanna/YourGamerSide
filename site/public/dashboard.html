@@ -32,9 +32,9 @@
         <div class="kpiAge">
             <div>
                 <span>Idade média do 1º contato dos <span class="inclusivo">inclusivos</span> com o jogo</span>
-                <h1 id="mediaIdadeI"></h1>
-                <h2 id="menorIdadeI"></h2>
-                <h2 id="maiorIdadeI"></h2>
+                <h1 id="mediaIdadeI">20y</h1>
+                <h2 id="menorIdadeI">20y</h2>
+                <h2 id="maiorIdadeI">20y</h2>
             </div>
             <div>
                 <span>Idade média do 1º contato dos homens com o jogo</span>
@@ -45,7 +45,10 @@
         </div>
         <div>
             <div class="questions">
-                <canvas id="questions"></canvas>
+                <button onclick="changeChart()"><</button>
+                <canvas id="dificuldade" style="display: flex;"></canvas>
+                <canvas id="auge" style="display: none;"></canvas>
+                <button onclick="changeChart()">></button>
             </div>
         </div>
         <div>
@@ -66,20 +69,141 @@
 </html>
 <script>
 
+  
+function changeChart(){
+    var canvas = document.querySelectorAll(".questions>canvas");
+
+    for(var i = 0; i<canvas.length; i++){
+        if(canvas[i].style.display == "flex"){
+            canvas[i].style.display = "none";
+        }else{
+            canvas[i].style.display = "flex";
+        }
+    }
+}
+
 function getSurveysData(){
     fetch(`/surveys/listar`)
         .then(resposta => {
             console.log(resposta);
             if (resposta.ok) {
                 resposta.json().then(resposta => {
-                    console.log(resposta)
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    mediaIdadeI.innerHTML = `${resposta[0].avgAge}y`
-                    menorIdadeI.innerHTML = `${resposta[0].minAge}y`
-                    maiorIdadeI.innerHTML = `${resposta[0].maxAge}y`
-                    mediaIdadeM.innerHTML = `${resposta[1].avgAge}y`
-                    menorIdadeM.innerHTML = `${resposta[1].minAge}y`
-                    maiorIdadeM.innerHTML = `${resposta[1].maxAge}y`
+                  // console.log(resposta)
+                  var genderData = [0,0,0,0]
+                  var expData = [0,0,0,0]
+                  var realData = [0,0,0]
+                  var difData = [0,0,0,0,0]
+                  var augeData = [0,0,0,0,0]
+                  var idadesI = []
+                  var idadesM = []
+                  console.log(resposta);
+                  
+                  
+                  
+                  for(var i = 0 ; i<resposta.length; i++){
+                      if(resposta[i].genero == 'feminino'){
+                        genderData[0]++;
+                        idadesI.push(Number(resposta[i].startedPlaying))
+                      }else if(resposta[i].genero == 'não-binário'){
+                        genderData[1]++;
+                        idadesI.push(Number(resposta[i].startedPlaying))
+                      }else if(resposta[i].genero == 'masculino'){
+                        genderData[2]++;
+                        idadesM.push(Number(resposta[i].startedPlaying))
+                      }else if(resposta[i].genero == 'outros'){
+                        genderData[3]++;
+                        idadesI.push(Number(resposta[i].startedPlaying))
+                      }
+                      if(resposta[i].expectativa == 'amigável'){
+                        expData[0]++
+                      }else if(resposta[i].expectativa == 'pacífico'){
+                        expData[1]++
+                      }else if(resposta[i].expectativa == 'hostil'){
+                        expData[2]++
+                      }
+                      if(resposta[i].realidade == 'amigável'){
+                        realData[0]++
+                      }else if(resposta[i].realidade == 'pacífico'){
+                        realData[1]++
+                      }else if(resposta[i].realidade == 'hostil'){
+                        realData[2]++
+                      }else if(resposta[i].realidade == 'nenhuma'){
+                        realData[3]++
+                      }
+                      if(resposta[i].dificuldade == 'agressão verbal'){
+                        difData[0]++
+                      }else if(resposta[i].dificuldade == 'assédio'){
+                        difData[1]++
+                      }else if(resposta[i].dificuldade == 'abuso psicológico'){
+                        difData[2]++
+                      }else if(resposta[i].dificuldade == 'nenhuma'){
+                        difData[3]++
+                      }
+                      if(resposta[i].auge == 'freetime'){
+                        augeData[0]++
+                      }else if(resposta[i].auge == 'casual'){
+                        augeData[1]++
+                      }else if(resposta[i].auge == 'ranked'){
+                        augeData[2]++
+                      }else if(resposta[i].auge == 'amador'){
+                        augeData[3]++
+                      }else if(resposta[i].auge == 'pro'){
+                        augeData[4]++
+                      }
+                  }
+                  genderChart.data.datasets[0].data = genderData
+                  expChart.data.datasets[0].data = expData
+                  realChart.data.datasets[0].data = realData
+                  difChart.data.datasets[0].data = difData
+                  augeChart.data.datasets[0].data = augeData
+                  genderChart.update();
+                  expChart.update();
+                  realChart.update();
+                  difChart.update();
+                  augeChart.update();
+
+                  console.log(idadesI);
+                  console.log(idadesM);
+
+                  var menorI = idadesI[0];
+                  var maiorI = idadesI[0];
+
+                  var menorM = idadesM[0];
+                  var maiorM = idadesM[0];
+
+                  var totalI = 0;
+                  var totalM = 0;
+
+                  for(var i = 0; i<idadesI.length || i<idadesM.length; i++){
+                    if(idadesI[i] != null){
+                      totalI += idadesI[i]
+                      if(menorI > idadesI[i]){
+                        menorI = idadesI[i];
+                      }else if(maiorI < idadesI[i]){
+                        maiorI = idadesI[i]
+                      }
+                    }
+
+                    if(idadesM[i] != null){
+                      totalM += idadesM[i]
+                      if(menorM > idadesM[i]){
+                        menorM = idadesM[i];
+                      }else if(maiorM < idadesM[i]){
+                        maiorM = idadesM[i]
+                      }
+                    }
+                  }
+
+                  var mediaI = totalI/idadesI.length;
+                  var mediaM = totalM/idadesM.length;
+
+                  mediaIdadeI.innerHTML = `${mediaI.toFixed(0)}y`
+                  menorIdadeI.innerHTML = `${menorI}y`
+                  maiorIdadeI.innerHTML = `${maiorI}y`
+                  mediaIdadeM.innerHTML = `${mediaM.toFixed(0)}y`
+                  menorIdadeM.innerHTML = `${menorM}y`
+                  maiorIdadeM.innerHTML = `${maiorM}y`
+
                 });
             } else {
                 console.error(`Nenhum dado encontrado ou erro na API`);
@@ -90,36 +214,66 @@ function getSurveysData(){
         });
 }
 
-const labelsBar = ['oi', 'oi2', 'oi3', 'oi4'];
-const dataBar = {
-  labels: labelsBar,
+const labelsDifBar = ['Agressão verbal', 'Assédio', 'Abuso psicológico', 'Nenhuma'];
+const dataDifBar = {
+  labels: labelsDifBar,
   datasets: [{
-    label: 'My First Dataset',
-    data: [65, 59, 80, 81, 56, 55, 40],
+    data: [65, 59, 80, 81],
     backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(255, 159, 64, 0.2)',
-      'rgba(255, 205, 86, 0.2)',
-      'rgba(201, 203, 207, 0.2)'
-    ],
-    borderColor: [
-      'rgb(255, 99, 132)',
-      'rgb(255, 159, 64)',
-      'rgb(255, 205, 86)',
-      'rgb(201, 203, 207)'
-    ],
-    borderWidth: 1
+      '#f7768e',
+      '#c98eae',
+      '#9aa5ce',
+      '#CFC9C2'
+    ]
   }]
 };
-const configBar = {
+const configDifBar = {
   type: 'bar',
-  data: dataBar,
+  data: dataDifBar,
   options: {
     scales: {
       y: {
         beginAtZero: true
       }
-    }
+    },
+    plugins: {
+            legend: {
+                display: false
+            }
+        }
+    
+  },
+};
+
+const labelsAugeBar = ['Player de tempo livre', 'Player casual', 'Player de ranqueadas', 'Player competidor amador', 'Player competidor profissional'];
+const dataAugeBar = {
+  labels: labelsAugeBar,
+  datasets: [{
+    data: [65, 59, 80, 81, 30],
+    backgroundColor: [
+      '#f7768e',
+      '#d886a4',
+      '#b995b9',
+      '#9aa5ce',
+      '#CFC9C2'
+    ]
+  }]
+};
+const configAugeBar = {
+  type: 'bar',
+  data: dataAugeBar,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    },
+    plugins: {
+            legend: {
+                display: false
+            }
+        }
+    
   },
 };
 
@@ -172,9 +326,9 @@ const configPieReal = {
 
 const dataGender = {
   labels: [
-    'Masculino',
     'Feminino',
     'Não-Binário',
+    'Masculino',
     'Outros'
   ],
   datasets: [{
@@ -195,10 +349,11 @@ const configGender = {
   data: dataGender,
 };
 
-new Chart(questions, configBar);
-new Chart(expectation, configPieExp);
-new Chart(reality, configPieReal);
-new Chart(gender, configGender);
+var difChart = new Chart(dificuldade, configDifBar);
+var augeChart = new Chart(auge, configAugeBar);
+var expChart = new Chart(expectation, configPieExp);
+var realChart = new Chart(reality, configPieReal);
+var genderChart = new Chart(gender, configGender);
 
 
 

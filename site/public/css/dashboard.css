@@ -37,6 +37,18 @@ section>div>div h2{
 }
 .questions{
     width: 80%;
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+.questions button{
+    all: unset;
+    font-size: 50px;
+    background-color: transparent;
+    cursor: pointer;
+    background: -webkit-linear-gradient(0deg, #F7768E 0%, #9AA5CE 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .exp, .real, .gender{
     width: 40%;
