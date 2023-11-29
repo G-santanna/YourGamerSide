@@ -6,7 +6,7 @@ function getStatistics(){
                 resposta.json().then(resposta => {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     var table = document.querySelector('table');
-                    var sulfix = ['st', 'nd', 'rd', 'th', 'th'];
+                    var sulfix = ['st', 'nd', 'rd', 'th', 'th','th', 'th', 'th', 'th', 'th', 'th'];
                     console.log(resposta)
                     for(var i = 0; i<resposta.length; i++){
                         table.innerHTML += `

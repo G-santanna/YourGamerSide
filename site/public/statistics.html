@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Gamer Side - Estatísticas</title>
+    <title>Your Gamer Side - Ranking</title>
     <link rel="stylesheet" href="css/side-header.css">
     <link rel="stylesheet" href="css/statistics.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,23 +12,24 @@
     <link rel="shortcut icon" href="./assets/imgs/logoYGS.svg" type="image/x-icon">
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 </head>
-<body onload="getStatistics()">
+<body onload="getStatistics(), validarSessao()">
     <header>
         <a href="index.html"><img src="assets/imgs/logoYGS.svg"></a>
         <div class="links">
             <a href="dashboard.html"><span>Dashboard</span></a>
             <a href="survey.html"><span>Pesquisa</span></a>
             <a href="index.html"><span>Jogar</span></a>
+            <a href="references.html"><span>Referências</span></a>
         </div>
         <div class="icons">
             <!-- <a href=""><img src="assets/imgs/bell.png"></a> -->
-            <a href=""><img src="assets/imgs/user.png"></a>
+            <!-- <a href=""><img src="assets/imgs/user.png"></a> -->
             <a href="landingpage.html" onclick="limparSessao()"><img src="assets/imgs/sign-out.png"></a>
             <!-- <a href=""><img src="assets/imgs/settings.png"></a> -->
         </div>
     </header>
     <section>
-        <h1>Estatísticas</h1>
+        <h1>Ranking</h1>
         <table>
             <tr class="tableTitle">
                 <td>POSITION</td>
@@ -41,3 +42,4 @@
 </body>
 </html>
 <script src="js/statistics.js"></script>
+<script src="js/sessao.js"></script>

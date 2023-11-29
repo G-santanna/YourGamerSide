@@ -9,6 +9,12 @@
     font-weight: 600;
 }
 
+a{
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+  }
+
 html{
     scroll-behavior: smooth;
     scroll-padding-top: 70px;
@@ -23,7 +29,7 @@ body{
     height: 70px;
     width: 100%;
     background-color: #24283B;
-    border-right: #9AA5CE solid 3px;
+    /* border-right: #9AA5CE solid 3px; */
     border-bottom: 3px solid;
     border-image: linear-gradient(to right, #F7768E 0%, #9AA5CE 100%) 1;
     display: flex;

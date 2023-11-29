@@ -1,10 +1,33 @@
-var answers = []
+var answers = [];
 var question = 1;
 
-function answer(){
-    var questionField = document.querySelector(".question");
-    var answerField = document.querySelector(".answer");
+var questionField = document.querySelector(".question");
+var answerField = document.querySelector(".answer");
 
+
+function surveyComplete(){
+    fetch(`/surveys/hasAnswered/${sessionStorage.userID}`)
+        .then(resposta => {
+            if (resposta.status == 200) {
+                resposta.json().then(resposta => {
+                    if(resposta[0].hasAnswers == 'true'){
+                        questionField.innerHTML = `OBRIGADO PELA PARTICIPAÇÃO`;
+                        answerField.innerHTML = `<img src="./assets/imgs/surveyMedal.webp"><br>
+                        <span>Como recompensa pela pesquisa você ganhou essa medalha!</span>
+                        `
+                        question = 8;
+                    }
+                });
+            } else {
+                console.error(`Nenhum dado encontrado ou erro na API`);
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados`+error);
+        });
+}
+
+function answer(){
     if(question == 1){
         var radio = document.querySelector('input[name="genero"]:checked').value;
         answers.push(radio);
@@ -101,16 +124,20 @@ function answer(){
             answers.push(sceneReality);
         }
         
-        fetch("/surveys/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                userID: sessionStorage.userID,
-                answers: answers
+        for(var i = 0; i<answers.length; i++){
+            fetch("/surveys/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    userID: sessionStorage.userID,
+                    answers: answers[i],
+                    question: i+1
+                })
             })
-        })
+        }
+
 
         questionField.innerHTML = `OBRIGADO PELA PARTICIPAÇÃO`;
             answerField.innerHTML = `<img src="./assets/imgs/surveyMedal.webp"><br>
@@ -121,3 +148,4 @@ function answer(){
         window.location = "index.html"
     }
 }
+

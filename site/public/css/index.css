@@ -23,7 +23,11 @@ section .linha{
     display: flex;
     gap: 44px;
 }
-section .linha:nth-child(1){
+section>div:nth-child(1){
+    margin-bottom: 100px;
+    font-size: 20px;
+}
+section .linha:nth-child(2){
     margin-bottom: 51px;
 }
 section .linha .cards{
@@ -42,9 +46,9 @@ section .linha .cards{
     cursor: pointer;
     user-select: none;
 }
-section .linha:nth-child(1) .cards{
+section .linha:nth-child(2) .cards{
     border-color: #F7768E;
 }
-section .linha:nth-child(2) .cards{
+section .linha:nth-child(3) .cards{
     border-color: #9AA5CE;
 }

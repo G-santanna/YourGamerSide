@@ -11,4 +11,8 @@ router.get("/listar", function(req, res){
     surveyController.listar(req, res);
 })
 
+router.get("/hasAnswered/:idUser", function(req, res){
+    surveyController.hasAnswered(req, res);
+})
+
 module.exports = router;

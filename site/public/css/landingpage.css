@@ -52,3 +52,33 @@ body::-webkit-scrollbar-thumb {
 .imagem img{
     width: 600px;
 }
+
+footer{
+  background-color: #24283B;
+  height: 70px;
+  border-top: 3px solid;
+  border-image: linear-gradient(to left, #F7768E 0%, #9AA5CE 100%) 1;
+  padding: 0 150px;
+}
+footer .content{
+  /* background-color: red; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+footer .content .socials{
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+footer .content .socials img{
+  height: 30px;
+}
+footer .content .source{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}

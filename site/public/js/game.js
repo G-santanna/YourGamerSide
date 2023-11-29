@@ -112,6 +112,7 @@ var pieceNow;
 
 //Função com algoritmo de verificação da posição correta e se há uma imagem no lugar.
 function drop(ev) {
+    console.log(ev)
   if(ev.target.localName == "div"){
     if(pieceNow == ev.target.attributes[3].value){
         ev.preventDefault();

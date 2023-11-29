@@ -13,17 +13,18 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
-<body onload="getSurveysData()">
+<body onload="getSurveysData(), validarSessao()">
     <header>
         <a href="index.html"><img src="assets/imgs/logoYGS.svg"></a>
         <div class="links">
-            <a href="statistics.html"><span>Estatísticas</span></a>
+            <a href="statistics.html"><span>Ranking</span></a>
             <a href="survey.html"><span>Pesquisa</span></a>
             <a href="index.html"><span>Jogar</span></a>
+            <a href="references.html"><span>Referências</span></a>
         </div>
         <div class="icons">
             <!-- <a href=""><img src="assets/imgs/bell.png"></a> -->
-            <a href=""><img src="assets/imgs/user.png"></a>
+            <!-- <a href=""><img src="assets/imgs/user.png"></a> -->
             <a href="landingpage.html" onclick="limparSessao()"><img src="assets/imgs/sign-out.png"></a>
             <!-- <a href=""><img src="assets/imgs/settings.png"></a> -->
         </div>
@@ -44,6 +45,7 @@
             </div>
         </div>
         <div>
+          <span id="questionGraphTitle">Qual foi a maior dificuldade que você encontrou<br>no CS:GO sendo mulher/não-binário/outro?</span>
             <div class="questions">
                 <button onclick="changeChart()"><</button>
                 <canvas id="dificuldade" style="display: flex;"></canvas>
@@ -53,13 +55,16 @@
         </div>
         <div>
             <div class="exp">
+              <span>Expectativa dos jogadores inclusivos sobre a comunidade</span>
                 <canvas id="expectation"></canvas>
             </div>
             <div class="real">
+              <span>Realidade dos jogadores inclusivos sobre a comunidade</span>
                 <canvas id="reality"></canvas>
             </div>
         </div>
         <div>
+          <h1>Distribuição de gêneros</h1>
             <div class="gender">
                 <canvas id="gender"></canvas>
             </div>
@@ -67,18 +72,26 @@
     </section>
 </body>
 </html>
+<script src="js/sessao.js"></script>
 <script>
 
-  
+Chart.defaults.font.family = "'Poppins'";
+Chart.defaults.color = "#CFC9C2"
+
+var questionTitle = ['Qual foi a maior dificuldade que você encontrou<br>no CS:GO sendo mulher/não-binário/outro?','Qual foi seu ápice de comprometimento com o jogo?']
+
 function changeChart(){
     var canvas = document.querySelectorAll(".questions>canvas");
+    console.log(canvas)
 
-    for(var i = 0; i<canvas.length; i++){
-        if(canvas[i].style.display == "flex"){
-            canvas[i].style.display = "none";
-        }else{
-            canvas[i].style.display = "flex";
-        }
+    if(canvas[0].style.display == "flex"){
+      canvas[1].style.display = "flex"
+      canvas[0].style.display = "none"
+      questionGraphTitle.innerHTML = questionTitle[1]
+    }else{
+      canvas[0].style.display = "flex"
+      canvas[1].style.display = "none"
+      questionGraphTitle.innerHTML = questionTitle[0]
     }
 }
 
@@ -88,7 +101,6 @@ function getSurveysData(){
             console.log(resposta);
             if (resposta.ok) {
                 resposta.json().then(resposta => {
-                  // console.log(resposta)
                   var genderData = [0,0,0,0]
                   var expData = [0,0,0,0]
                   var realData = [0,0,0]
@@ -96,9 +108,8 @@ function getSurveysData(){
                   var augeData = [0,0,0,0,0]
                   var idadesI = []
                   var idadesM = []
-                  console.log(resposta);
                   
-                  
+                  console.log(resposta)
                   
                   for(var i = 0 ; i<resposta.length; i++){
                       if(resposta[i].genero == 'feminino'){
@@ -114,6 +125,7 @@ function getSurveysData(){
                         genderData[3]++;
                         idadesI.push(Number(resposta[i].startedPlaying))
                       }
+
                       if(resposta[i].expectativa == 'amigável'){
                         expData[0]++
                       }else if(resposta[i].expectativa == 'pacífico'){
@@ -121,6 +133,7 @@ function getSurveysData(){
                       }else if(resposta[i].expectativa == 'hostil'){
                         expData[2]++
                       }
+
                       if(resposta[i].realidade == 'amigável'){
                         realData[0]++
                       }else if(resposta[i].realidade == 'pacífico'){
@@ -130,6 +143,7 @@ function getSurveysData(){
                       }else if(resposta[i].realidade == 'nenhuma'){
                         realData[3]++
                       }
+
                       if(resposta[i].dificuldade == 'agressão verbal'){
                         difData[0]++
                       }else if(resposta[i].dificuldade == 'assédio'){
@@ -139,6 +153,7 @@ function getSurveysData(){
                       }else if(resposta[i].dificuldade == 'nenhuma'){
                         difData[3]++
                       }
+
                       if(resposta[i].auge == 'freetime'){
                         augeData[0]++
                       }else if(resposta[i].auge == 'casual'){
@@ -151,6 +166,7 @@ function getSurveysData(){
                         augeData[4]++
                       }
                   }
+                  
                   genderChart.data.datasets[0].data = genderData
                   expChart.data.datasets[0].data = expData
                   realChart.data.datasets[0].data = realData
@@ -240,8 +256,7 @@ const configDifBar = {
             legend: {
                 display: false
             }
-        }
-    
+    }
   },
 };
 
@@ -283,7 +298,7 @@ const dataPieExp = {
     'Amigável',
     'Pacífico',
     'Hostil',
-    'Sem expectativa'
+    'Nenhuma'
   ],
   datasets: [{
     data: [150, 80, 100, 80],
@@ -300,6 +315,13 @@ const dataPieExp = {
 const configPieExp = {
   type: 'pie',
   data: dataPieExp,
+  options: {
+    plugins: {
+            legend: {
+              position: 'left',
+            }
+    }
+  }
 };
 
 const dataPieReal = {
@@ -322,6 +344,13 @@ const dataPieReal = {
 const configPieReal = {
   type: 'pie',
   data: dataPieReal,
+  options: {
+    plugins: {
+            legend: {
+              position: 'right',
+            }
+    }
+  }
 };
 
 const dataGender = {
@@ -347,6 +376,13 @@ const dataGender = {
 const configGender = {
   type: 'doughnut',
   data: dataGender,
+  options: {
+    plugins: {
+            legend: {
+              position: 'right',
+            }
+    }
+  }
 };
 
 var difChart = new Chart(dificuldade, configDifBar);

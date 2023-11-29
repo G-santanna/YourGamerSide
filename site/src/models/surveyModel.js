@@ -1,12 +1,10 @@
 var database = require("../database/config")
 
-function cadastrar(userID, answers) {
+function cadastrar(userID, question, answers) {
+    
     var instrucao = `
-        INSERT INTO answer VALUES`;
-       for(var i = 0; i < answers.length-1; i++){
-           instrucao += `(${userID}, ${i+1}, '${answers[i]}'),`;
-        }
-        instrucao += `(${userID}, ${answers.length}, '${answers[answers.length-1]}');`;
+        INSERT INTO answer VALUES (${userID}, ${question}, '${answers}');`;
+
     return database.executar(instrucao);
 }
 
@@ -25,7 +23,21 @@ function listar(){
     return database.executar(instrucao);
 }
 
+function hasAnswered(idUser){
+    var instrucao = `
+    SELECT 
+        CASE
+            WHEN count(distinct fkUser) = 0 THEN 'false'
+            ELSE 'true'
+        END AS hasAnswers
+    FROM answer where fkUser = ${idUser};
+    `
+
+    return database.executar(instrucao);
+}
+
 module.exports = {
     cadastrar,
-    listar
+    listar,
+    hasAnswered
 };

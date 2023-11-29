@@ -29,9 +29,10 @@ create table answer(
 );
 
 create table statistic(
+	idStatistic int auto_increment,
 	fkUser int,
     fkPuzzle int,
-    primary key (fkUser, fkPuzzle),
+    primary key (idStatistic, fkUser, fkPuzzle),
     foreign key (fkUser) references usuario(idUser),
     foreign key (fkPuzzle) references puzzle(idPuzzle),
     runTime time

@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/imgs/logoYGS.svg" type="image/x-icon">
 </head>
-<body onload="setPieces(sessionStorage.getItem('puzzleID'))">
+<body onload="setPieces(sessionStorage.getItem('puzzleID')), validarSessao()">
     <header>
         <a href="index.html"><img src="assets/imgs/logoYGS.svg"></a>
         <div class="links">
@@ -20,7 +20,7 @@
         </div>
         <div class="icons">
             <!-- <a href=""><img src="assets/imgs/bell.png"></a> -->
-            <a href=""><img src="assets/imgs/user.png"></a>
+            <!-- <a href=""><img src="assets/imgs/user.png"></a> -->
             <a href="landingpage.html" onclick="limparSessao()"><img src="assets/imgs/sign-out.png"></a>
         </div>
     </header>
@@ -75,3 +75,4 @@
 </body>
 </html>
 <script src="js/game.js"></script>
+<script src="js/sessao.js"></script>

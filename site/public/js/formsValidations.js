@@ -20,11 +20,9 @@ function validarLogin(){
 
                 resposta.json().then(json => {
                     console.log(json);
-                    // console.log(JSON.stringify(json));
                     sessionStorage.userEmail = json.email;
                     sessionStorage.userName = json.username;
                     sessionStorage.userID = json.idUser;
-
                     setTimeout(function () {
                         window.location = "./index.html";
                     }, 1000); // apenas para exibir o loading
