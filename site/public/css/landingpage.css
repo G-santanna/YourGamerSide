@@ -5,6 +5,12 @@ body {
   
     scrollbar-color: var(--sb-thumb-color) 
                      var(--sb-track-color);
+    padding-bottom: 73px;
+}
+
+html{
+  scroll-padding-bottom: 73px;
+
 }
 
 body::-webkit-scrollbar {
@@ -18,7 +24,7 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
 }
-.section1, .section2, .section3{
+.section1, .section2, .section3, .section4{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -54,8 +60,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 footer{
+  position: fixed;
+  bottom: 0;
   background-color: #24283B;
   height: 70px;
+  width: 100%;
   border-top: 3px solid;
   border-image: linear-gradient(to left, #F7768E 0%, #9AA5CE 100%) 1;
   padding: 0 150px;
