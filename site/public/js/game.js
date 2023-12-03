@@ -120,7 +120,7 @@ function drop(ev) {
         ev.target.appendChild(document.getElementById(data));
         changePiece();
     }else{
-        alert("Peça no lugar errado!")  
+        // alert("Peça no lugar errado!")  
     }
     if(!piece.innerHTML.includes('img')){
         vetorPecas = document.querySelectorAll(".linha>div");
@@ -137,7 +137,7 @@ function drop(ev) {
         
     }
   }else{
-    alert("as peças não podem se sobrepor!")
+    // alert("as peças não podem se sobrepor!")
   }
 }
 

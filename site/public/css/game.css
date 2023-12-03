@@ -123,9 +123,10 @@ section .puzzleTitle{
     width: 80px;
     height: 80px;
     justify-content: center;
-    background-color: #BB9AF7;
+    /* background-color: #BB9AF7; */
     border-radius: 150px;
 }
 section .puzzleTitle img{
     height: 50px;
+    filter: drop-shadow(2px 2px #BB9AF7);
 }

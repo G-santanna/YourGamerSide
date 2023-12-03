@@ -49,6 +49,12 @@ section .linha .cards{
 section .linha:nth-child(2) .cards{
     border-color: #F7768E;
 }
+section .linha:nth-child(2) .cards img{
+    filter: drop-shadow(2px 2px #F7768E);
+}
 section .linha:nth-child(3) .cards{
     border-color: #9AA5CE;
+}
+section .linha:nth-child(3) .cards img{
+    filter: drop-shadow(2px 2px #9AA5CE);
 }
