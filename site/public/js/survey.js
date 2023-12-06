@@ -119,7 +119,7 @@ function answer(){
             `
         }
     }else if(question == 7){
-        if(document.getElementById("reality") != null){
+        if(reality != null){
             var sceneReality = reality.value;
             answers.push(sceneReality);
         }

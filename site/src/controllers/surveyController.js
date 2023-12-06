@@ -5,7 +5,16 @@ function cadastrar(req, res){
     var answers = req.body.answers;
     var question = req.body.question;
 
-    surveyModel.cadastrar(userID, question, answers)
+    surveyModel.cadastrar(userID, question, answers).then(function(resposta){
+        res.json()
+    }).catch(function(erro){
+        console.log(erro);
+            console.log(
+                "\nHouve um erro ao coletar os dados! Erro: ",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+    })
 }
 
 function listar(req, res){
